@@ -1,11 +1,11 @@
 import { PERMISSIONS } from "./types/permissions";
-import { PermissioningFunction, UserAbilityInterface } from "./types/user-ability-interface";
+import { PermissioningFunction, AbilityInterface } from "./types/ability-interface";
 import { NotAuthorizedError } from './errors/not-authorized-error';
 
 export default class UserAbility<U> {
   abilities: any = {};
 
-  constructor(loader: (abilityInterface: UserAbilityInterface<U>) => void) {
+  constructor(loader: (abilityInterface: AbilityInterface<U>) => void) {
       loader(this.interface());
   };
 
@@ -37,7 +37,7 @@ export default class UserAbility<U> {
       });
   };
 
-  interface = (): UserAbilityInterface<U> => {
+  interface = (): AbilityInterface<U> => {
       return { allow: this.allow, disallow: this.disallow };
   };
 
