@@ -2,7 +2,7 @@ import { PERMISSIONS } from "./types/permissions";
 import { PermissioningFunction, AbilityInterface } from "./types/ability-interface";
 import { NotAuthorizedError } from './errors/not-authorized-error';
 
-export default class UserAbility<U> {
+export default class Ability<U> {
   abilities: any = {};
 
   constructor(loader: (abilityInterface: AbilityInterface<U>) => void) {

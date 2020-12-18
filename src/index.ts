@@ -1,6 +1,6 @@
-import UserAbility from './ability';
+import Ability from './ability';
 import { PERMISSIONS } from './types/permissions';
 import { AbilityInterface } from './types/ability-interface';
 
-export default UserAbility;
+export default Ability;
 export { PERMISSIONS, AbilityInterface };
