@@ -20,7 +20,7 @@ export default class Ability<U> {
       actions.forEach((act: PERMISSIONS | string) => {
           this.abilities[type] = this.abilities[type] || {};
           this.abilities[type][act] = this.abilities[type][act] || [];
-          this.abilities[type][act].push(new Permission(act, criteria, true));
+          this.abilities[type][act].push(new Permission(act, criteria, PermissionType.ALLOW));
       });
   };
 
@@ -34,7 +34,7 @@ export default class Ability<U> {
       actions.forEach((act: PERMISSIONS | string) => {
           this.abilities[type] = this.abilities[type] || {};
           this.abilities[type][act] = this.abilities[type][act] || [];
-          this.abilities[type][act].push(new Permission(act, criteria, false));
+          this.abilities[type][act].push(new Permission(act, criteria, PermissionType.DISALLOW));
       });
   };
 
@@ -48,24 +48,28 @@ export default class Ability<U> {
 
       const permissionChain = (this.abilities[derivedType][action] || []).filter((perm: Permission<U, T>) => (isClassType && perm.isClassLevelPermission()) || !isClassType);
 
-      if (permissionChain.length === 0) return false;
+      const groupedPermissions = permissionChain.reduce((acc: any, perm: Permission<U, T>) => {
+        acc[perm.type].push(perm.evaluate(user, entity));
+        return acc;
+      }, { [PermissionType.ALLOW]: [], [PermissionType.DISALLOW]: []});
 
-      return permissionChain.reduce((result: boolean, permission: Permission<U, T>) => {
-          return result && permission.evaluate(user, entity);
-      }, true);
+      const allowed = [false, ...groupedPermissions[PermissionType.ALLOW]].reduce((a, b) => a || b);
+      const disallowed = [false, ...groupedPermissions[PermissionType.DISALLOW]].reduce((a, b) => a || b);
+
+      return allowed && !disallowed;
   }
 
   permits = (user: U) => {
-      return {
-          toPerform: (action: PERMISSIONS | string) => {
-              return {
-                  on: <T>(entity: (new (...args: any[]) => T) | T, type?: string) => {
-                      return this.checkPermission(action, user, entity, type);
-                  }
-              };
-          }
-      };
-  };
+    return {
+        toPerform: (action: PERMISSIONS | string) => {
+            return {
+                on: <T>(entity: (new (...args: any[]) => T) | T, type?: string) => {
+                    return this.checkPermission(action, user, entity, type);
+                }
+            };
+        }
+    };
+}
 
   ensure = (user: U) => {
       return {
@@ -81,15 +85,20 @@ export default class Ability<U> {
   }
 }
 
+enum PermissionType {
+  ALLOW,
+  DISALLOW
+}
+
 class Permission<U, T> {
   permission: PERMISSIONS | string;
   criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>
-  affirmative: boolean;
+  type: PermissionType;
 
-  constructor(permission: PERMISSIONS | string, criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>, affirmative: boolean) {
+  constructor(permission: PERMISSIONS | string, criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>, type: PermissionType) {
       this.permission = permission;
       this.criteria = criteria;
-      this.affirmative = affirmative;
+      this.type = type;
   }
 
   private isClassLevelCriteriaType = <U, T>(criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>): criteria is ClassLevelFunction<U> => {
@@ -104,9 +113,9 @@ class Permission<U, T> {
 
   evaluate = (user: U, entity?: T) => {
     if(this.isClassLevelCriteriaType(this.criteria)) {
-      return this.criteria(user) ? this.affirmative : !this.affirmative;
+      return this.criteria(user);
     } else {
-      return this.criteria(user, entity) ? this.affirmative : !this.affirmative;
+      return this.criteria(user, entity);
     }
   }
 }
