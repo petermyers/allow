@@ -1,4 +1,4 @@
-import Ability, { PERMISSIONS } from '../src/index';
+import Ability, { Permissions } from '../src/index';
 import User from './user';
 import { EntityA, EntityB } from './entity';
 
@@ -18,7 +18,7 @@ describe("ability", () => {
 
     expect(userAbility.permits(user).toPerform('action.custom').on(entity)).toBeTruthy();
     expect(userAbility.permits(user2).toPerform('action.custom').on(entity)).toBeFalsy();
-    expect(userAbility.permits(user).toPerform(PERMISSIONS.READ).on(entity)).toBeFalsy();
+    expect(userAbility.permits(user).toPerform(Permissions.READ).on(entity)).toBeFalsy();
 
   });
 

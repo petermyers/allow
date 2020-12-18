@@ -1,4 +1,4 @@
-import { PERMISSIONS } from "./types/permissions";
+import { Permissions } from "./types/permissions";
 import { PermissioningFunction, AbilityInterface, EntityLevelFunction, ClassLevelFunction } from "./types/ability-interface";
 import { NotAuthorizedError } from './errors/not-authorized-error';
 import { Class } from "@babel/types";
@@ -10,28 +10,28 @@ export default class Ability<U> {
       loader(this.interface());
   };
 
-  private allow: PermissioningFunction<U> = <T>(action: PERMISSIONS | string, entity: (new (...args: any[]) => T) | string, criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>) => {
-      const actions = action === PERMISSIONS.CRUD ? [
-          PERMISSIONS.CREATE, PERMISSIONS.READ, PERMISSIONS.UPDATE, PERMISSIONS.DELETE
+  private allow: PermissioningFunction<U> = <T>(action: Permissions | string, entity: (new (...args: any[]) => T) | string, criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>) => {
+      const actions = action === Permissions.CRUD ? [
+        Permissions.CREATE, Permissions.READ, Permissions.UPDATE, Permissions.DELETE
       ] : [action];
 
       const type = (typeof entity) === 'string' ? entity : (<any>entity).name;
 
-      actions.forEach((act: PERMISSIONS | string) => {
+      actions.forEach((act: Permissions | string) => {
           this.abilities[type] = this.abilities[type] || {};
           this.abilities[type][act] = this.abilities[type][act] || [];
           this.abilities[type][act].push(new Permission(act, criteria, PermissionType.ALLOW));
       });
   };
 
-  private disallow: PermissioningFunction<U> = <T>(action: PERMISSIONS | string, entity: (new (...args: any[]) => T) | string, criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>) => {
-      const actions = action === PERMISSIONS.CRUD ? [
-          PERMISSIONS.CREATE, PERMISSIONS.READ, PERMISSIONS.UPDATE, PERMISSIONS.DELETE
+  private disallow: PermissioningFunction<U> = <T>(action: Permissions | string, entity: (new (...args: any[]) => T) | string, criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>) => {
+      const actions = action === Permissions.CRUD ? [
+        Permissions.CREATE, Permissions.READ, Permissions.UPDATE, Permissions.DELETE
       ] : [action];
 
       const type = (typeof entity) === 'string' ? entity : (<any>entity).name;
 
-      actions.forEach((act: PERMISSIONS | string) => {
+      actions.forEach((act: Permissions | string) => {
           this.abilities[type] = this.abilities[type] || {};
           this.abilities[type][act] = this.abilities[type][act] || [];
           this.abilities[type][act].push(new Permission(act, criteria, PermissionType.DISALLOW));
@@ -42,7 +42,7 @@ export default class Ability<U> {
       return { allow: this.allow, disallow: this.disallow };
   };
   
-  private checkPermission = <T>(action: PERMISSIONS | string, user: U, entity: T, type?: string) => {
+  private checkPermission = <T>(action: Permissions | string, user: U, entity: T, type?: string) => {
       const isClassType = (<any>entity).constructor.name === 'Function';
       const derivedType = type || (isClassType ? (<any>entity).name : (<any>entity).constructor.name);
 
@@ -61,7 +61,7 @@ export default class Ability<U> {
 
   permits = (user: U) => {
     return {
-        toPerform: (action: PERMISSIONS | string) => {
+        toPerform: (action: Permissions | string) => {
             return {
                 on: <T>(entity: (new (...args: any[]) => T) | T, type?: string) => {
                     return this.checkPermission(action, user, entity, type);
@@ -73,7 +73,7 @@ export default class Ability<U> {
 
   ensure = (user: U) => {
       return {
-          canPerform: (action: PERMISSIONS | string) => {
+          canPerform: (action: Permissions | string) => {
               return {
                   on: <T>(entity: (new (...args: any[]) => T) | T, type?: string) => {
                       if (!this.checkPermission(action, user, entity, type)) throw new NotAuthorizedError('Not authorized to perform this action.');
@@ -91,11 +91,11 @@ enum PermissionType {
 }
 
 class Permission<U, T> {
-  permission: PERMISSIONS | string;
+  permission: Permissions | string;
   criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>
   type: PermissionType;
 
-  constructor(permission: PERMISSIONS | string, criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>, type: PermissionType) {
+  constructor(permission: Permissions | string, criteria: EntityLevelFunction<U, T> | ClassLevelFunction<U>, type: PermissionType) {
       this.permission = permission;
       this.criteria = criteria;
       this.type = type;
