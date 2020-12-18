@@ -24,8 +24,16 @@
 - npm >=5.5.0
 - node >=8.0.0
 
-### Installation
-### Usage
+## Installation
+```sh
+npm install allowjs
+```
+or
+```sh
+yarn add allowjs
+```
+## Usage
+
 
 ## Development
 ## Install
