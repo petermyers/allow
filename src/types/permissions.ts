@@ -1,0 +1,7 @@
+export enum PERMISSIONS {
+  CREATE,
+  READ,
+  UPDATE,
+  DELETE,
+  CRUD
+}

@@ -1,0 +1,20 @@
+{
+  "name": "allow",
+  "version": "0.0.1",
+  "description": "A lightweight permissioning library.",
+  "license": "WTFPL",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "homepage": "https://github.com/petermyers/allow#readme",
+  "repository": {
+    "type": "git", 
+    "url": "https://github.com/petermyers/allow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/petermyers/allow/issues"
+  },
+  "engines": {
+    "npm": ">=5.0.0",
+    "node": ">=8.0.0"
+  }
+}
