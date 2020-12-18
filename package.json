@@ -1,6 +1,6 @@
 {
   "name": "allowjs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A lightweight permissioning library.",
   "license": "WTFPL",
   "main": "dist/index.js",
