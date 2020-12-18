@@ -1,9 +1,6 @@
 <h1 align="center">Welcome to Allow 👋</h1>
 <p>
-  <a href="https://www.npmjs.com/package/allow" target="_blank">
-    <img alt="Version" src="https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg">
-  </a>
-  <img src="https://img.shields.io/badge/node-%3E%3D8.0.0-blue.svg" />
+  <img src="https://img.shields.io/badge/node-%3E%3D10.0.0-blue.svg" />
   <a href="https://github.com/petermyers/allow#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
