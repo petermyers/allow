@@ -1,0 +1,32 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+jobs:
+  checks:
+    name: Linters
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - run: yarn prettier:check
+      - run: yarn lint:check
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["8.x", "10.x", "12.x", "14.x"]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setting up Node.js (v${{ matrix.node-version }}.x)
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn test
+      - run: yarn global add codecov
+        if: ${{ matrix.node-version == '14.x' }}
+      - run: codecov -f ./coverage/clover.xml -t ${{ secrets.CODECOV_TOKEN }} --commit=$GITHUB_SHA --branch=${GITHUB_REF##*/}
+        if: ${{ matrix.node-version == '14.x' }}

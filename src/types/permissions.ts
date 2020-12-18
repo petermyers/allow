@@ -1,7 +1,7 @@
 export enum Permissions {
-  CREATE,
-  READ,
-  UPDATE,
-  DELETE,
-  CRUD
+    CREATE,
+    READ,
+    UPDATE,
+    DELETE,
+    CRUD,
 }

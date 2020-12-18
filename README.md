@@ -7,6 +7,9 @@
   <a href="https://github.com/petermyers/allow#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
+  <a href="https://codecov.io/gh/petermyers/allow/">
+    <img alt="Coverage" src="https://img.shields.io/codecov/c/github/petermyers/allow/main.svg?style=flat-square" />
+  </a>
   <a href="https://github.com/petermyers/allow/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg" />
   </a>
