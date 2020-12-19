@@ -1,6 +1,6 @@
 {
   "name": "allowjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A lightweight permissioning library.",
   "license": "MIT",
   "main": "dist/index.js",
@@ -16,7 +16,14 @@
   "engines": {
     "node": ">=10.0.0"
   },
-  "keywords": ["allow", "permissions", "access", "control", "authorize", "authorization"],
+  "keywords": [
+    "allow",
+    "permissions",
+    "access",
+    "control",
+    "authorize",
+    "authorization"
+  ],
   "scripts": {
     "test": "jest --coverage",
     "test:debug": "tsc && node --inspect-brk node_modules/.bin/jest --coverage",
