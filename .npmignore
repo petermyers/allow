@@ -3,3 +3,9 @@ src
 node_modules
 tests
 coverage
+.eslintignore
+.prettierignore
+.eslintrc.js
+.prettierrc.js
+.jest.config.js
+.github
