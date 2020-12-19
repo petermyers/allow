@@ -21,8 +21,7 @@
 
 ## Prerequisites
 
-- npm >=5.5.0
-- node >=8.0.0
+- node >=10.0.0
 
 ## Installation
 ```sh
