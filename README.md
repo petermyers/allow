@@ -11,7 +11,7 @@
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg" />
   </a>
   <a href="https://github.com/petermyers/allow/blob/master/LICENSE" target="_blank">
-    <img alt="License: WTFPL" src="https://img.shields.io/badge/License-WTFPL-brightgreen.svg" />
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-brightgreen.svg" />
   </a>
 </p>
 
@@ -63,7 +63,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2020 [Peter Myers](https://github.com/petermyers).<br />
-This project is [WTFPL](https://github.com/petermyers/allow/blob/master/LICENSE) licensed.
+This project is [MIT](https://github.com/petermyers/allow/blob/master/LICENSE) licensed.
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

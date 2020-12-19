@@ -2,7 +2,7 @@
   "name": "allowjs",
   "version": "0.1.5",
   "description": "A lightweight permissioning library.",
-  "license": "WTFPL",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "homepage": "https://github.com/petermyers/allow#readme",
