@@ -5,7 +5,6 @@ module.exports = {
   },
   testRegex: '/tests/.*\.spec\.ts$',
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
-  coverageReporters: ['text', 'html', 'clover'],
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
       'node_modules',
