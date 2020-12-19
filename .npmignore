@@ -7,5 +7,5 @@ coverage
 .prettierignore
 .eslintrc.js
 .prettierrc.js
-.jest.config.js
+jest.config.js
 .github
