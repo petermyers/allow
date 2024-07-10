@@ -1,11 +1,11 @@
-import * as faker from 'faker'
+import { faker } from '@faker-js/faker';
 
 export class EntityA {
     id: string
     userId: string
 
     constructor(userId: string) {
-        this.id = faker.random.alphaNumeric(10)
+        this.id = faker.string.alphanumeric({ length: 10 })
         this.userId = userId
     }
 }
@@ -15,7 +15,7 @@ export class EntityB {
     userId: string
 
     constructor(userId: string) {
-        this.id = faker.random.alphaNumeric(10)
+        this.id = faker.string.alphanumeric({ length: 10 })
         this.userId = userId
     }
 }

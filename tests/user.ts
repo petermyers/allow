@@ -1,4 +1,4 @@
-import * as faker from 'faker'
+import { faker } from "@faker-js/faker";
 
 export default class User {
     id: string
@@ -8,8 +8,8 @@ export default class User {
 
     constructor(roles: string[]) {
         this.roles = roles
-        this.id = faker.random.alphaNumeric(10)
-        this.firstName = faker.name.firstName()
-        this.lastName = faker.name.lastName()
+        this.id = faker.string.alphanumeric({ length: 10 })
+        this.firstName = faker.person.firstName()
+        this.lastName = faker.person.lastName()
     }
 }
