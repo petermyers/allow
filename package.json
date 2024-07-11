@@ -15,7 +15,7 @@
     "url": "https://github.com/petermyers/allow/issues"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=18.18.0"
   },
   "keywords": [
     "allow",
