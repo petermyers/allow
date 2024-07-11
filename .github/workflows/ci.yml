@@ -5,29 +5,31 @@ on:
       - main
 jobs:
   checks:
-    name: Linters
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          registry-url: https://registry.npmjs.org/
       - run: yarn install
       - run: yarn prettier:check
       - run: yarn lint:check
   tests:
-    name: Tests
+    name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: ["18.x", "20.x"]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Setting up Node.js (v${{ matrix.node-version }}.x)
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          egistry-url: https://registry.npmjs.org/
       - run: yarn install
       - run: yarn test
       - run: ./node_modules/.bin/codecov -t ${{ secrets.CODECOV_TOKEN }} --commit=$GITHUB_SHA --branch=${GITHUB_REF##*/}
