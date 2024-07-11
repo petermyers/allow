@@ -12,30 +12,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        name: Checkout
       - uses: actions/setup-node@v4
+        name: Setup Node
         with:
           node-version: 20.x
           registry-url: https://registry.npmjs.org/
       - run: yarn install --frozen-lockfile
+        name: Yarn Install
       - run: yarn test
+        name: Test
       - run: yarn publish
+        name: Publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
-  tag-release:
-    name: Tag Release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@4
       - uses: sergeysova/jq-action@v2
+        name: Derive Version
         id: version
         with:
           cmd: 'jq .version package.json -r'
       - uses: actions/create-release@v1  
+        name: Create Tag
         env:
           # This token is provided by Actions, you do not need to create your own token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.version.outputs.value }}
-          release_name: Release ${{ github.ref }}
+          release_name: Release ${{ steps.version.outputs.value }}
           draft: false
           prerelease: false
