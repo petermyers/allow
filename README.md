@@ -21,7 +21,7 @@
 
 ## Prerequisites
 
-- node >=10.0.0
+- node >=18.18.0
 
 ## Installation
 ```sh
