@@ -22,10 +22,10 @@ jobs:
         name: Yarn Install
       - run: yarn test
         name: Test
-      # - run: yarn publish
-      #   name: Publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
+      - run: yarn publish
+        name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
       - uses: sergeysova/jq-action@v2
         name: Derive Version
         id: version
@@ -41,3 +41,5 @@ jobs:
           release_name: Release ${{ steps.version.outputs.value }}
           draft: false
           prerelease: false
+          body: |
+            Release version ${{ steps.version.outputs.value }}.
