@@ -38,7 +38,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/jest": "^29.5.12",
     "codecov": "^3.8.3",
-    "eslint": "^9.6.0",
+    "eslint": "8.x",
     "jest": "^29.7.0",
     "jest-summarizing-reporter": "^1.1.4",
     "prettier": "^3.3.2",
