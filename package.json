@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "description": "A lightweight permissioning library.",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "homepage": "https://github.com/petermyers/allow#readme",
@@ -29,20 +30,21 @@
     "test:debug": "tsc && node --inspect-brk node_modules/.bin/jest --coverage",
     "prettier:check": "./node_modules/.bin/prettier --check ./src ./tests",
     "prettier:run": "./node_modules/.bin/prettier --write ./src ./tests",
-    "lint:check": "./node_modules/.bin/eslint --max-warnings 0 ./src ./tests"
+    "lint:check": "./node_modules/.bin/eslint --max-warnings 0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.6.0",
     "@faker-js/faker": "^8.4.1",
+    "@types/eslint__js": "^8.42.3",
     "@types/jest": "^29.5.12",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
     "codecov": "^3.8.3",
     "eslint": "^9.6.0",
     "jest": "^29.7.0",
     "jest-summarizing-reporter": "^1.1.4",
     "prettier": "^3.3.2",
     "ts-jest": "^29.2.2",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.16.0"
   },
   "dependencies": {}
 }

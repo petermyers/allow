@@ -135,9 +135,7 @@ export default class Ability<U> {
     permits = (
         user: U
     ): {
-        toPerform: (
-            action: Permissions | string
-        ) => {
+        toPerform: (action: Permissions | string) => {
             on: <T>(
                 entity: (new (...args: unknown[]) => T) | T,
                 type?: string
@@ -168,9 +166,7 @@ export default class Ability<U> {
     ensure = (
         user: U
     ): {
-        canPerform: (
-            action: Permissions | string
-        ) => {
+        canPerform: (action: Permissions | string) => {
             on: <T>(
                 entity: (new (...args: unknown[]) => T) | T,
                 type?: string
