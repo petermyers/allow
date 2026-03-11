@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: 20.x
           registry-url: https://registry.npmjs.org/
+      - run: npm install -g npm@latest
       - run: yarn install --frozen-lockfile
         name: Yarn Install
       - run: yarn test
