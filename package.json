@@ -3,7 +3,6 @@
   "version": "1.1.2",
   "description": "A lightweight permissioning library.",
   "license": "MIT",
-  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "homepage": "https://github.com/petermyers/allow#readme",
