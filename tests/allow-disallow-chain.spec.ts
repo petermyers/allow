@@ -1,4 +1,4 @@
-import Ability, { Permissions } from '../src/index'
+import { Ability, Permissions } from '../src/index'
 import { EntityA } from './entity'
 import User from './user'
 

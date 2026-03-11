@@ -1,4 +1,4 @@
-import Ability, { Permissions, NotAuthorizedError } from '../src/index'
+import { Ability, Permissions, NotAuthorizedError } from '../src/index'
 import User from './user'
 import { EntityA } from './entity'
 
